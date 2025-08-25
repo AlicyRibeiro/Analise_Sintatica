@@ -106,3 +106,43 @@ g++ parserlr0.cpp -o parser
 ```
 
 Ao executar o ./parser, o programa solicitará o nome do arquivo de entrada. Você pode usar entrada_valida.txt ou entrada_invalida.txt. 
+
+## Exemplos de Teste
+
+O parser foi validado com um conjunto de entradas.
+
+**1.Entradas Válidas (entrada_valida.txt)**
+
+Exemplos de sentenças que o parser aceita: 
+```bash
+x 
+( x )
+( x , x )
+( x , ( x , x ) )
+( ( x , x ) , x )
+( ( ( x ) ) )
+```
+
+**2.Saída para Entradas Válidas (saida.log)**
+
+O resultado para as entradas válidas é salvo no arquivo saida.log: 
+```bash
+Teste 1: Sucesso
+Teste 2: Sucesso
+Teste 3: Sucesso
+Teste 4: Sucesso
+Teste 5: Sucesso
+Teste 6: Sucesso
+```
+
+**3.Entradas Inválidas (entrada_invalida.txt)**
+
+Exemplos de sentenças que violam as regras da gramática e são rejeitadas:
+```bash
+x , x 	
+( x x )	
+( x , , x )
+( , x )
+```
+
+Para essas entradas, o parser exibirá a mensagem Teste N: Erro sintático.
