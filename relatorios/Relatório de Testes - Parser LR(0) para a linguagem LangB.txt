@@ -1,0 +1,49 @@
+Disciplina: Compiladores
+
+Alunas: Ana Alicy Ribeiro dos Santos
+	Ana Beatriz Leite Damascena  
+	Kaylane Castro Evangelista   
+	
+Trabalho I - Análise Sintática (Parser LR(0))
+
+Gramática Utilizada
+	0. S' → S $
+	1. S  → ( L )
+	2. S  → x
+	3. L  → S
+	4. L  → L , S
+	
+Essa gramática representa uma linguagem minimalista inspirada na LangB, que aceita expressões com x e listas separadas por vírgula entre parênteses.
+
+
+Entradas Testadas
+O parser foi testado com entradas retiradas de um arquivo entrada.txt. Cada linha do arquivo representa uma entrada da linguagem.
+
+
+Lista de Entradas e Resultados
+Teste		Entrada				Resultado 			Justificativa
+1		 x		 		Sucesso				S → x é uma produção direta da gramática
+2		( x )		 		Sucesso		 		S → ( L ), L → S, S → x
+3		( x , x )	 		Sucesso				L → L , S com dois x
+4		( x , ( x ) )	 		Sucesso				Expressão aninhada usando S → ( L )
+5		( ( x , x ) , x )		Sucesso				Recursão e aninhamento válidos
+6		( ( x , ( x , x ) ) , ( x ) )	Sucesso				Expressão com recursão e várias listas aninhadas
+7		x , x 				Erro Sintatico			x , x não está dentro de um S → ( L )
+8		( x x )				Erro Sintatico			Dois x juntos sem vírgula não pertencem à gramática
+9		( x , , x )			Erro Sintatico			Vírgulas repetidas: L → L , S requer apenas um , seguido de S
+10		( , x )				Erro Sintatico			L não começa com vírgula
+
+
+Saída do Programa
+O parser imprime na tela e grava no arquivo saida.log o seguinte formato:
+	Teste 1. Sucesso
+	Teste 2. Sucesso
+	Teste 3. Sucesso
+	...
+	Teste 10. Erro sintático
+Esse formato segue exatamente o que é exigido no enunciado do trabalho.
+
+
+Conclusão
+O parser LR(0) desenvolvido foi testado com entradas válidas e inválidas, demonstrando o comportamento esperado em cada caso. A saída está em conformidade com o padrão exigido pelo trabalho e o comportamento do analisador está consistente com a gramática definida.
+O resultado desses testes confirma a correção da implementação do analisador sintático LR(0).
